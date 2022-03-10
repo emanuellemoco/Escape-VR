@@ -7,6 +7,8 @@ public class isKeyNear : MonoBehaviour
 
         public Animator PortaDireitaTrigger;
         public Animator PortaEsquerdaTrigger;
+        [SerializeField] private AudioSource audioPortaEs;
+        [SerializeField] private AudioSource audioPortaDi;
         //public GameObject Key;
 
 
@@ -27,7 +29,9 @@ public class isKeyNear : MonoBehaviour
     {
         if(other.gameObject.tag == "key_collider"){
             PortaDireitaTrigger.SetBool("ab", true);
+            audioPortaDi.Play();
             PortaEsquerdaTrigger.SetBool("ab", true);
+            audioPortaEs.Play();
         }
     
 

@@ -8,6 +8,9 @@ public class senha : MonoBehaviour
     public int[] arlist;
     int index = 0;
     public Animator bauTrigger;
+    [SerializeField] private AudioSource audioAcerto;
+    [SerializeField] private AudioSource audioErro;
+    bool acertou = false;
 
 
     // Start is called before the first frame update
@@ -15,14 +18,7 @@ public class senha : MonoBehaviour
     {
        //bauTrigger = GetComponent<Animator>();
         arlist = new int[6];
-    //    arlist = new ArrayList(); 
-    //    resposta = new ArrayList();
-    //    resposta.Add(3);
-    //    resposta.Add(4);
-    //    resposta.Add(2);
-    //    resposta.Add(3);
-    //    resposta.Add(4);
-    //    resposta.Add(1);
+
 
     }
 
@@ -33,6 +29,7 @@ public class senha : MonoBehaviour
     }
 
     public void buttonPressed(int botao){
+        if(acertou) return;
         
         
         arlist[index] = botao;
@@ -44,19 +41,11 @@ public class senha : MonoBehaviour
             return;
         }
         if(index == 6){
-            var acertou = true;
-            Debug.Log("entrou");
             for(int i = 0 ; i < 6; i++){  
-                Debug.Log("______");
-                Debug.Log(arlist[i]);
-                Debug.Log(resposta[i]);
-                Debug.Log("______"); 
-                Debug.Log(arlist[i] != resposta[i]);
-                if(arlist[i] != resposta[i]){
-                    Debug.Log("ERROROOO");
-
+               if(arlist[i] != resposta[i]){
+                    Debug.Log("errou");
                     index = 0;
-                      // colocar som de erro
+                    audioErro.Play();
                     // arlist = new ArrayList();
                     acertou = false;
                     return;
@@ -66,12 +55,11 @@ public class senha : MonoBehaviour
             }
 
             Debug.Log(acertou); 
-            if(acertou){ 
-                Debug.Log("ACERTOOO");
-                bauTrigger.SetBool("ab", true);
-                acertou = false;
-            // som do bau abrindo
-            }
+            Debug.Log("ACERTOOO");
+            bauTrigger.SetBool("ab", true);
+            audioAcerto.Play();
+            acertou = true;
+        // som do bau abrindo
         }
 
     }
