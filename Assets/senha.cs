@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class senha : MonoBehaviour
 {
-    public ArrayList arlist; 
-    public ArrayList resposta; 
+    public int[] resposta = {3, 4, 2, 3, 4, 1}; 
+    public int[] arlist;
+    int index = 0;
     public Animator bauTrigger;
 
 
@@ -13,15 +14,15 @@ public class senha : MonoBehaviour
     void Start()
     {
        //bauTrigger = GetComponent<Animator>();
-
-       arlist = new ArrayList(); 
-       resposta = new ArrayList();
-       resposta.Add(3);
-       resposta.Add(4);
-       resposta.Add(2);
-       resposta.Add(3);
-       resposta.Add(4);
-       resposta.Add(1);
+        arlist = new int[6];
+    //    arlist = new ArrayList(); 
+    //    resposta = new ArrayList();
+    //    resposta.Add(3);
+    //    resposta.Add(4);
+    //    resposta.Add(2);
+    //    resposta.Add(3);
+    //    resposta.Add(4);
+    //    resposta.Add(1);
 
     }
 
@@ -32,27 +33,45 @@ public class senha : MonoBehaviour
     }
 
     public void buttonPressed(int botao){
-        arlist.Add(botao);
-
+        
+        
+        arlist[index] = botao;
+        index++;
+        Debug.Log(botao);
+    
         if(botao == 0){
-            arlist = new ArrayList(); 
-            bauTrigger.SetBool("ab", true); // APAGAR DEPOISSSS
+            index = 0; 
+            return;
         }
-        if(arlist.Count == 6){
-            for(int i = 0 ; i < arlist.Count; i++){  
+        if(index == 6){
+            var acertou = true;
+            Debug.Log("entrou");
+            for(int i = 0 ; i < 6; i++){  
+                Debug.Log("______");
+                Debug.Log(arlist[i]);
+                Debug.Log(resposta[i]);
+                Debug.Log("______"); 
+                Debug.Log(arlist[i] != resposta[i]);
                 if(arlist[i] != resposta[i]){
                     Debug.Log("ERROROOO");
-                    // colocar som de erro
-                    arlist = new ArrayList();  
-                    break;
+
+                    index = 0;
+                      // colocar som de erro
+                    // arlist = new ArrayList();
+                    acertou = false;
+                    return;
+                     
                 }
-
+ 
             }
-            Debug.Log("ACERTOOO");
-            bauTrigger.SetBool("ab", true);
+
+            Debug.Log(acertou); 
+            if(acertou){ 
+                Debug.Log("ACERTOOO");
+                bauTrigger.SetBool("ab", true);
+                acertou = false;
             // som do bau abrindo
-
-
+            }
         }
 
     }
