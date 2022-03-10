@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Dungeon_Demo.unity
+    guid: b94ee59f12f411f488e6df197429e012
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 0114f62c5ab60054e90d9b9b7735b3c5, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 23df2656f8e1a37489c1e0320478389f, type: 2}
