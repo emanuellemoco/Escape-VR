@@ -46,4 +46,3 @@ public class restartGame : MonoBehaviour
 // - Chave
 // - Porta
 // - Botao restart jogo 
-// - Candelabro
